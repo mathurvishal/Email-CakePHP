@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" persistUploadOnCheckin="false">
+  <component name="PublishConfigData" serverName="vishalmathur.in" persistUploadOnCheckin="false">
     <serverData>
-      <paths name="aki">
+      <paths name="development">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/Email-CakePHP" local="$PROJECT_DIR$" web="/Email-CakePHP" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="vishalmathur.in">
         <serverdata>
           <mappings>
             <mapping local="$PROJECT_DIR$" web="/" />
