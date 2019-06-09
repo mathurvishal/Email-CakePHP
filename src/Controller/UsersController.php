@@ -49,25 +49,9 @@ class UsersController extends AppController
      */
     public function add()
     {
-        /*Email */
-        /*TransportFactory::setConfig('mailtrap', [
-            'host' => 'smtp.mailtrap.io',
-            'port' => 2525,
-            'username' => '6600d71fde4bd9',
-            'password' => '71c59dde779884',
-            'className' => 'Smtp'
-        ]);*/
+        /*Email  Starts*/
+
         $email = new Email('default'); //To load a predefined configuration
-        //$email->setProfile('default');
-        //pr($email); die;
-        /*Quick Send*/
-        /*try {
-              $email->deliver('connect@vishalmathur.in', 'Subject', 'Message', ['from' => 'connect@vishalmathur.in']);
-              echo("success");
-          }
-          catch (Exception $e){
-              echo 'Exception : ',  $e->getMessage(), "\n";
-          }*/
 
         $email->setFrom(['connect@vishalmathur.in' => 'vishalmathur.in'])
             ->setTo('connect@vishalmathur.in', 'Vishal Mathur gmail')
@@ -78,7 +62,7 @@ class UsersController extends AppController
             ->setEmailFormat('html')
             ->setViewVars(['value' => 12345])
             ->setSubject('About test email')
-            ->setAttachments([
+            ->setAttachments([                //for attachments
                 'cake.gif' => [
                     'file' => WWW_ROOT.'/img/cake.power.gif',
                     'mimetype' => 'file/gif',
@@ -94,7 +78,7 @@ class UsersController extends AppController
         else{
             echo 'fail';
         }
-
+        /*Email  Starts*/
 
 
         die;
