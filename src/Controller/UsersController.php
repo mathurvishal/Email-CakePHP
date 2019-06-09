@@ -3,6 +3,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Mailer\Email;
+use Cake\Network;
 use Cake\Mailer\TransportFactory;
 /**
  * Users Controller
@@ -56,19 +57,47 @@ class UsersController extends AppController
             'password' => '71c59dde779884',
             'className' => 'Smtp'
         ]);*/
-        $email = new Email();
-        $email->setProfile('default');
-            //pr($email); die;
-        /**/
-        try {
-            $email->deliver('connect@vishalmathur.in', 'Subject', 'Message', ['from' => 'connect@vishalmathur.in']);
-            echo("success");
+        $email = new Email('default'); //To load a predefined configuration
+        //$email->setProfile('default');
+        //pr($email); die;
+        /*Quick Send*/
+        /*try {
+              $email->deliver('connect@vishalmathur.in', 'Subject', 'Message', ['from' => 'connect@vishalmathur.in']);
+              echo("success");
+          }
+          catch (Exception $e){
+              echo 'Exception : ',  $e->getMessage(), "\n";
+          }*/
+
+        $email->setFrom(['connect@vishalmathur.in' => 'vishalmathur.in'])
+            ->setTo('connect@vishalmathur.in', 'Vishal Mathur gmail')
+            ->addTo('mathurvishal@outlook.com', 'Vishal Mathur Outlook')
+            //->template('view_welcome', 'layout_fancy')
+            ->setBcc('bcc@vishalmathur.in')
+            ->setCc('cc@vishalmathur.in')
+            ->setEmailFormat('html')
+            ->setViewVars(['value' => 12345])
+            ->setSubject('About test email')
+            ->setAttachments([
+                'cake.gif' => [
+                    'file' => WWW_ROOT.'/img/cake.power.gif',
+                    'mimetype' => 'file/gif',
+                    'contentId' => '4132432432'
+                ]
+            ])
+            ->viewBuilder()->setTemplate('view_welcome')
+            ->setLayout('layout_fancy');
+
+        if ($email->send('My message')){
+            echo 'success';
         }
-        catch (Exception $e){
-            echo 'Exception : ',  $e->getMessage(), "\n";
+        else{
+            echo 'fail';
         }
 
-         die;
+
+
+        die;
 
         $user = $this->Users->newEntity();
         if ($this->request->is('post')) {
